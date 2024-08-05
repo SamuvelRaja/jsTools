@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-const inputFolder = './input'; // Input folder containing the images
-const outputFolder = './webp';; // Output folder to save the WebP images
+const inputFolder = './assets/input'; // Input folder containing the images
+const outputFolder = './assets/webp';; // Output folder to save the WebP images
 
 // Create output folder if it doesn't exist
 if (!fs.existsSync(outputFolder)) {
