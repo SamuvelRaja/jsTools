@@ -5,18 +5,17 @@ const fs = require('fs');
 // Read the CSV file
 const csvFilePath = './assets/remote.csv';
 const csv = require('csvtojson');
+let matchedurl=""
 
-const keywords = ['frontend', 'javascript', 'react', 'nextjs', 'next.js', 'nodejs'];
+const keywords = [' frontend', 'react.js', 'react', 'nextjs', 'next.js', 'nodejs'];
 
 const urlVariations = [
   '', // for the main URL
   '/careers',
-  '/jobs',
-  '/join-us',
-  '/opportunities',
-  '/vacancies',
+  '/jobs',  
   'careers.',
-  'jobs.'
+  'jobs.',
+  '/vacancies'
 ];
 
 const checkForKeywords = async (baseURL) => {
@@ -35,6 +34,7 @@ const checkForKeywords = async (baseURL) => {
       const text = $('body').text().toLowerCase();
 
       if (keywords.some(keyword => text.includes(keyword))) {
+        matchedurl=url
         return true;
       }
     } catch (error) {
@@ -57,6 +57,7 @@ const processCompanies = async () => {
       results.push({
         name: company.Name,
         website: company.Website,
+        matchURL:matchedurl,
         region: company.Region,
       });
     }
